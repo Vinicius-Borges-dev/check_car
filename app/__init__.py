@@ -11,7 +11,10 @@ def create_app():
     
     from .routes.main import main_bp
     app.register_blueprint(main_bp)
-
+    
+    from .routes.user import user_bp
+    app.register_blueprint(user_bp, url_prefix='/user')
+    
     from .routes.veiculo import veiculo_bp
     app.register_blueprint(veiculo_bp, url_prefix='/veiculo')
     

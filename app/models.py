@@ -64,7 +64,7 @@ class Reserva(db.Model):
     id_usuario = db.Column(db.Integer, nullable=False)
     dataInicio = db.Column(db.DateTime, nullable=False)
     dataFim = db.Column(db.DateTime, nullable=False)
-    status = db.Column(db.String(20), nullable=False)
+    status = db.Column(db.Boolean, nullable=False)
     
     def __repr__(self):
         return self.id_reserva

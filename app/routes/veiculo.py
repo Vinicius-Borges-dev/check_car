@@ -10,7 +10,7 @@ def index():
     return render_template('cards_veiculos.html', veiculos=veiculos)
 
 @veiculo_bp.route('/adicionar_veiculo', methods=['GET','POST'])
-def veiculos():
+def adicionar_veiculo():
     if request.method == 'POST':
         marca = request.form['marca']
         modelo = request.form['modelo']

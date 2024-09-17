@@ -15,7 +15,7 @@
                             <span class="nome">{{veiculo.marca}}</span>
                             <span class="preco">{{veiculo.precoDia}}</span>
                         </div>
-                        <a href="/reservar/{{veiculo.id_veiculo}}">Reservar</a>
+                        <a href="{{url_for('reserva.form', id=veiculo.id_veiculo)}}">Reservar</a>
                     </div>
                 {% endfor %}
             </div>

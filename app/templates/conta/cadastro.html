@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main class="container">
+        <section class="card">
+            <h1>Cadastro</h1>
+            <form action="{{url_for('usuario.cadastro')}}" method="post">
+                <div class="form-input">
+                    <label for="username">Usuário:</label>
+                    <input type="text" name="username" id="username" required>
+                </div>
+                <div class="form-input">
+                    <label for="password">Senha:</label>
+                    <input type="password" name="password" id="password" required>
+                </div>
+                <div class="form-input">
+                    <label for="confirmPassword">Confirmação de senha:</label>
+                    <input type="password" name="confirmPassword" id="confirmPassword" required>
+                </div>
+                <div class="form-input">
+                    <button type="submit">Entrar</button>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
