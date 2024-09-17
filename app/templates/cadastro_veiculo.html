@@ -7,7 +7,7 @@
         <section id="Veiculos">
             <h1>Formulário Cadastrar Veículos</h1>
             <section id="secaoFormulario">
-                <form method="post" action="#" enctype="multipart/form-data">
+                <form method="post" action="/veiculo/adicionar_veiculo" enctype="multipart/form-data">
                     <div id="formulario">
                         <div class="blocoFormulario">
                             <label>Marca</label>
@@ -16,29 +16,39 @@
                         </div>
                         <div class="blocoFormulario">
                             <label>Modelo</label>
-                            <input type="text" name="marca" placeholder="Modelo"
+                            <input type="text" name="modelo" placeholder="Modelo"
                                 class="inputBase">
                         </div>
                         <div class="blocoFormulario">
                             <label>Placa</label>
-                            <input type="text" name="marca" placeholder="Placa"
+                            <input type="text" name="placa" placeholder="Placa"
+                                class="inputBase">
+                        </div>
+                        <div class="blocoFormulario">
+                            <label>Categoria</label>
+                            <input type="text" name="categoria" placeholder="Categoria"
+                                class="inputBase">
+                        </div>
+                        <div class="blocoFormulario">
+                            <label>Ano</label>
+                            <input type="text" name="ano" placeholder="Ano"
                                 class="inputBase">
                         </div>
                         <div class="blocoFormulario">
                             <label>Valor</label>
-                            <input type="text" name="marca" placeholder="Valor"
+                            <input type="text" name="valor" placeholder="Valor"
                                 class="inputBase">
                         </div>
                         <div class="blocoFormulario">
                             <label>Status</label>
-                            <select class="inputBase">
+                            <select class="inputBase" name="status">
                                 <option value="0">Inativado</option>
                                 <option value="1" selected>Ativo</option>
                             </select>
                         </div>
                         <div class="blocoFormulario">
                             <label>Imagem</label>
-                            <input type="file">
+                            <input type="file" name="imagem">
                         </div>
 
                         <div class="blocoFormulario">

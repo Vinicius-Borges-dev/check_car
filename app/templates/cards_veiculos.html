@@ -8,84 +8,16 @@
         <section id="Veiculos">
             <h1>Veículos Disponíveis</h1>
             <div class="listaVeiculos">
-                <div class="blocosVeiculos">
-                    <img src="imagens/car.png">
-                    <div class="legenda">
-                        <span class="nome">Gol</span>
-                        <span class="preco">45,00</span>
+                {% for veiculo in veiculos %}
+                    <div class="blocosVeiculos">
+                        <img src="{{url_for('static', filename='carImages/')}}{{veiculo.imagem}}">
+                        <div class="legenda">
+                            <span class="nome">{{veiculo.marca}}</span>
+                            <span class="preco">{{veiculo.precoDia}}</span>
+                        </div>
+                        <a href="/reservar/{{veiculo.id_veiculo}}">Reservar</a>
                     </div>
-                </div>
-                <div class="blocosVeiculos">
-                    <img src="imagens/car.png">
-                    <div class="legenda">
-                        <span class="nome">Gol</span>
-                        <span class="preco">45,00</span>
-                    </div>
-                </div>
-                <div class="blocosVeiculos">
-                    <img src="imagens/car.png">
-                    <div class="legenda">
-                        <span class="nome">Gol</span>
-                        <span class="preco">45,00</span>
-                    </div>
-                </div>
-                <div class="blocosVeiculos">
-                    <img src="imagens/car.png">
-                    <div class="legenda">
-                        <span class="nome">Gol</span>
-                        <span class="preco">45,00</span>
-                    </div>
-                </div>
-                <div class="blocosVeiculos">
-                    <img src="imagens/car.png">
-                    <div class="legenda">
-                        <span class="nome">Gol</span>
-                        <span class="preco">45,00</span>
-                    </div>
-                </div>
-                <div class="blocosVeiculos">
-                    <img src="imagens/car.png">
-                    <div class="legenda">
-                        <span class="nome">Gol</span>
-                        <span class="preco">45,00</span>
-                    </div>
-                </div>
-                <div class="blocosVeiculos">
-                    <img src="imagens/car.png">
-                    <div class="legenda">
-                        <span class="nome">Gol</span>
-                        <span class="preco">45,00</span>
-                    </div>
-                </div>
-                <div class="blocosVeiculos">
-                    <img src="imagens/car.png">
-                    <div class="legenda">
-                        <span class="nome">Gol</span>
-                        <span class="preco">45,00</span>
-                    </div>
-                </div>
-                <div class="blocosVeiculos">
-                    <img src="imagens/car.png">
-                    <div class="legenda">
-                        <span class="nome">Gol</span>
-                        <span class="preco">45,00</span>
-                    </div>
-                </div>
-                <div class="blocosVeiculos">
-                    <img src="imagens/car.png">
-                    <div class="legenda">
-                        <span class="nome">Gol</span>
-                        <span class="preco">45,00</span>
-                    </div>
-                </div>
-                <div class="blocosVeiculos">
-                    <img src="imagens/car.png">
-                    <div class="legenda">
-                        <span class="nome">Gol</span>
-                        <span class="preco">45,00</span>
-                    </div>
-                </div>
-
+                {% endfor %}
             </div>
         </section>
         <!-- veiculos -->

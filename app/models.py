@@ -17,7 +17,7 @@ class DadosPessoais(db.Model):
         return self.id_dados_pessoais
 
 class Usuario(db.Model):
-    __tablename__ = 'usuario'
+    __tablename__ = 'usuarios'
 
     id_usuario = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), nullable=False)
@@ -34,9 +34,11 @@ class Veiculo(db.Model):
     id_veiculo = db.Column(db.Integer, primary_key=True)
     marca = db.Column(db.String(50), nullable=False)
     modelo = db.Column(db.String(100), nullable=False)
+    placa = db.Column(db.String(20), nullable=False)
     categoria = db.Column(db.String(50), nullable=False)
     ano = db.Column(db.Integer, nullable=False)
     precoDia = db.Column(db.Float, nullable=False)
+    imagem = db.Column(db.Text, nullable=False)
     disponibilidade = db.Column(db.String(20), nullable=False)
     
     def __repr__(self):
@@ -55,7 +57,7 @@ class Manutencao(db.Model):
         return self.id_manutencao
 
 class Reserva(db.Model):
-    __tablename__ = 'reserva'
+    __tablename__ = 'reservas'
 
     id_reserva = db.Column(db.Integer, primary_key=True)
     id_veiculo = db.Column(db.Integer, nullable=False)

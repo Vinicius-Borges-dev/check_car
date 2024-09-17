@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table border=1>
+        <thead>
+            <th>Carro reservado</th>
+            <th>Data inicial</th>
+            <th>Data final</th>
+            <th colspan="2">Ações</th>
+        </thead>
+        <tbody>
+            {% for reserva in reservas %}
+                <tr>
+                    <td>{{ reserva.veiculo.nome }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

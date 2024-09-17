@@ -12,4 +12,10 @@ def create_app():
     from .routes.main import main_bp
     app.register_blueprint(main_bp)
 
+    from .routes.veiculo import veiculo_bp
+    app.register_blueprint(veiculo_bp, url_prefix='/veiculo')
+    
+    from .routes.reserva import reserva_bp
+    app.register_blueprint(reserva_bp, url_prefix='/reserva')
+
     return app
