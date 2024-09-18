@@ -1,6 +1,7 @@
 {% extends './base.html' %}
 
 {% block content %}
+{% include 'navbar.html' %}
 
 <section id="content">
     <main id="main">
@@ -17,13 +18,12 @@
                         </div>
                             <a href="{{url_for('reserva.form', id=veiculo.id_veiculo)}}">Reservar</a>
                         {% if nivel == 'funcionario' %}
-                            <a href="{{url_for('reserva.deletar', id=veiculo.id_veiculo)}}">Reservar</a>
+                            <a href="{{url_for('veiculo.deletar', id=veiculo.id_veiculo)}}">Deletar</a>
                         {% endif %}
                     </div>
                 {% endfor %}
             </div>
         </section>
-        <!-- veiculos -->
     </main>
 </section>
 

@@ -7,10 +7,12 @@
             <ul class="poppins-light">
                 <li><a href="/">Home</a></li>
                 <li><a href="{{url_for('veiculo.index')}}">Veículos</a></li>
-                <li><a href="/conta">Minha conta</a></li>
-                <li><a href="{{url_for('veiculo.adicionar_veiculo')}}">Adcionar veículo</a></li>
+                {% if session['tipo'] == 'funcionario' %}
+                    <li><a href="{{url_for('veiculo.adicionar_veiculo')}}">Adcionar veículo</a></li>
+                {% endif%}
                 <li><a href="{{url_for('reserva.index')}}">Reservas</a></li>
                 <li><a href="/contato">Contato</a></li>
+                <li><a href="{{url_for('user.logout')}}">Sair</a></li>
             </ul>
         </nav>
         <div></div>

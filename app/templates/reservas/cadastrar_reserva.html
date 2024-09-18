@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% include 'navbar.html' %}
     <section id="content">
         <main id="main">
             <form method="post" action="{{url_for('reserva.cadastro', id=veiculo.id_veiculo)}}" enctype="multipart/form-data">

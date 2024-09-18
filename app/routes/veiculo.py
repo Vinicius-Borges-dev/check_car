@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from app.models import Veiculo
 from app import db
 from app.middlewares import AuthMiddleware
@@ -13,7 +13,7 @@ def loginAuth():
 @veiculo_bp.route('/')
 def index():
     veiculos = Veiculo.query.all()
-    return render_template('veiculos/cards_veiculos.html', veiculos=veiculos)
+    return render_template('veiculos/cards_veiculos.html', veiculos=veiculos , nivel=session['tipo'])
 
 @veiculo_bp.route('/adicionar_veiculo', methods=['GET','POST'])
 def adicionar_veiculo():

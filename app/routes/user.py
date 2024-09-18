@@ -17,9 +17,10 @@ def login():
         if email == dadosPessoais.email and senha == usuario.senha:
             session['id'] = usuario.id_usuario
             session['tipo'] = usuario.tipo
+            session.permanent = True
             return redirect(url_for('main.index'))
         else:
-            return redirect(url_for('user.login'), erro='Usuário ou senha inválidos')
+            return redirect(url_for('user.login'))
 
 
 @user_bp.route('/cadastro', methods=['GET','POST'])
@@ -49,3 +50,8 @@ def cadastro():
         db.session.commit()
 
         return redirect(url_for('user.login'))
+    
+@user_bp.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('user.login'))

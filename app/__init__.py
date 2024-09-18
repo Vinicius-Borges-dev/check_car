@@ -10,8 +10,8 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
     
-    app.config['SECRET_KEY'] = 'ablublé'
-    app.config['PERMANET_SESSION_LIFETIME'] = timedelta(days=1)
+    app.config['SECRET_KEY'] = 'abluble'
+    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=1)
     
     from .routes.main import main_bp
     app.register_blueprint(main_bp)
