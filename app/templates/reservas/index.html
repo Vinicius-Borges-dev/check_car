@@ -13,15 +13,15 @@
             </thead>
             <tbody>
                 {% for reserva in reservas %}
-                <!-- {% for veiculo in veiculos %}{% endfor %} -->
+                {% set veiculo = veiculos[loop.index0] %}
                 <tr>
-                    <!-- <td>
-                        <ul>{{veiculo['marca']}}</ul>
-                        <ul>{{veiculo['modelo']}}</ul>
-                        <ul>{{veiculo['placa']}}</ul>
-                    </td> -->
+                    <td>
+                        <ul>
+                            <li>Marca: {{ veiculo['marca'] }}</li>
+                            <li>Modelo: {{ veiculo['modelo'] }}</li>
+                        </ul>
+                    </td>
                     <td>{{reserva.dataInicio}}</td>
-                    <td>{{reserva.dataFim}}</td>
                     <td>{{reserva.dataFim}}</td>
                     <td>
                         {% if reserva.status == 1 %}
@@ -30,8 +30,11 @@
                         <p>Cancelado</p>
                         {% endif %}
                     </td>
+                    <td>
+                        <a
+                            href="{{url_for('reserva.cancelar', id=reserva.id_reserva)}}">Cancelar</a>
+                    </td>
                 </tr>
-                
                 {% endfor %}
             </tbody>
         </table>

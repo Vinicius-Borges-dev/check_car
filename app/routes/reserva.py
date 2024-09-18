@@ -41,3 +41,10 @@ def cadastro(id):
     db.session.commit()
     
     return redirect('/reserva')
+
+@reserva_bp.route('/cancelar/<int:id>')
+def cancelar(id):
+    reserva = Reserva.query.filter_by(id_reserva=id).first()
+    db.session.delete(reserva)
+    db.session.commit()
+    return redirect('/reserva')

@@ -37,3 +37,13 @@ def adicionar_veiculo():
         return redirect('/veiculo')
     else:
         return render_template('veiculos/cadastro_veiculo.html')
+
+@veiculo_bp.route('/deletar/<int:id>')
+def deletar(id):
+    if AuthMiddleware.get_employee_permission():
+        veiculo = Veiculo.query.filter_by(id_veiculo=id).first()
+        db.session.delete(veiculo)
+        db.session.commit()
+        return redirect('/veiculo')
+    else:
+        return redirect('/veiculo')
