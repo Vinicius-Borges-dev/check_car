@@ -6,18 +6,10 @@
             <form method="post" action="{{url_for('reserva.cadastro', id=veiculo.id_veiculo)}}" enctype="multipart/form-data">
                 <div id="formulario">
                     <h2>Modelo escolhido</h2>
-                    <table border="1">
-                        <thead>
-                            <th>Marca</th>
-                            <th>Modelo</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{{ veiculo.marca }}</td>
-                                <td>{{ veiculo.modelo }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <ul>
+                        <li>Marca: {{ veiculo.marca }}</li>
+                        <li>Modelo: {{ veiculo.modelo }}</li>
+                    </ul>
 
                     <h2>Reserva</h2>
                     <div class="blocoFormulario">

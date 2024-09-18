@@ -4,4 +4,4 @@ class AuthMiddleware:
     
     @staticmethod
     def is_logged():
-        return 'id'in session
+        return 'id' in session
