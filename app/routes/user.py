@@ -11,3 +11,10 @@ def index():
 @user_bp.route('/login', methods=['POST'])
 def login():
     pass
+
+
+@user_bp.route('/cadastro', methods=['POST'])
+def cadastro():
+    newUsuario = Usuario(
+        nome = request.form['nome']
+    )
