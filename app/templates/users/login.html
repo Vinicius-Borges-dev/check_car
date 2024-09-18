@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +11,8 @@
             <h1>Login</h1>
             <form action="{{url_for('user.login')}}" method="post">
                 <div class="form-input">
-                    <label for="username">Usuário:</label>
-                    <input type="text" name="username" id="username" required>
+                    <label for="email">E-mail:</label>
+                    <input type="email" name="email" id="email" required>
                 </div>
                 <div class="form-input">
                     <label for="password">Senha:</label>
@@ -21,6 +21,9 @@
                 <div class="form-input">
                     <button type="submit">Entrar</button>
                 </div>
+                {% if erro %}
+                    <p>{{erro}}</p>
+                {% endif %}
             </form>
             <p>Não possue uma conta? <a href="{{url_for('user.cadastro')}}">Cadastre-se</a></p>
         </section>

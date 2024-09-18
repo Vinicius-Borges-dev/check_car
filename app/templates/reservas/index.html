@@ -3,23 +3,40 @@
 {% block content %}
 <section id="content">
     <main id="main">
-        <table border=1></table>
-        <thead>
-            <th>Carro reservado</th>
-            <th>Data inicial</th>
-            <th>Data final</th>
-            <th colspan="2">Ações</th>
-        </thead>
-        <tbody>
-            {% for reserva in reservas %}
+        <table border="1">
+            <thead>
+                <th>Carro reservado</th>
+                <th>Data inicial</th>
+                <th>Data final</th>
+                <th>Status</th>
+                <th colspan="2">Ações</th>
+            </thead>
+            <tbody>
+                {% for reserva in reservas %}
+                <!-- {% for veiculo in veiculos %}{% endfor %} -->
                 <tr>
-                    <td>{{ reserva.veiculo.nome }}</td>
+                    <!-- <td>
+                        <ul>{{veiculo['marca']}}</ul>
+                        <ul>{{veiculo['modelo']}}</ul>
+                        <ul>{{veiculo['placa']}}</ul>
+                    </td> -->
+                    <td>{{reserva.dataInicio}}</td>
+                    <td>{{reserva.dataFim}}</td>
+                    <td>{{reserva.dataFim}}</td>
+                    <td>
+                        {% if reserva.status == 1 %}
+                        <p>Ativo</p>
+                        {% else %}
+                        <p>Cancelado</p>
+                        {% endif %}
+                    </td>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                
+                {% endfor %}
+            </tbody>
+        </table>
     </main>
 
 </section>
-    
+
 {% endblock %}

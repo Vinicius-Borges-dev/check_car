@@ -1,13 +1,19 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, url_for
 from app.models import Veiculo
 from app import db
+from app.middlewares import AuthMiddleware
 
 veiculo_bp = Blueprint('veiculo', __name__, static_folder='static')
+
+@veiculo_bp.before_request
+def loginAuth():
+    if not AuthMiddleware.is_logged():
+        return redirect(url_for('user.login'))
 
 @veiculo_bp.route('/')
 def index():
     veiculos = Veiculo.query.all()
-    return render_template('cards_veiculos.html', veiculos=veiculos)
+    return render_template('veiculos/cards_veiculos.html', veiculos=veiculos)
 
 @veiculo_bp.route('/adicionar_veiculo', methods=['GET','POST'])
 def adicionar_veiculo():
@@ -30,4 +36,4 @@ def adicionar_veiculo():
         
         return redirect('/veiculo')
     else:
-        return render_template('cadastro_veiculo.html')
+        return render_template('veiculos/cadastro_veiculo.html')
