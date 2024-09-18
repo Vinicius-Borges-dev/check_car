@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
-from app.models import Veiculo
+from app.models import Veiculo, Reserva
 from app import db
 from app.middlewares import AuthMiddleware
 
@@ -42,6 +42,8 @@ def adicionar_veiculo():
 def deletar(id):
     if AuthMiddleware.get_employee_permission():
         veiculo = Veiculo.query.filter_by(id_veiculo=id).first()
+        reservas = Reserva.query.filter_by(id_veiculo=veiculo.id_veiculo)
+        db.session.delete(reservas)
         db.session.delete(veiculo)
         db.session.commit()
         return redirect('/veiculo')
