@@ -4,26 +4,22 @@
 {% include 'navbar.html' %}
     <section id="content">
         <main id="main">
-            <form method="post" action="{{url_for('reserva.cadastro', id=veiculo.id_veiculo)}}" enctype="multipart/form-data">
+            <form class="form-reservas" method="post" action="{{url_for('reserva.cadastro', id=veiculo.id_veiculo)}}" enctype="multipart/form-data">
                 <div id="formulario">
                     <h2>Modelo escolhido</h2>
-                    <ul>
+                    <ul class="dados-veiculo">
                         <li>Marca: {{ veiculo.marca }}</li>
                         <li>Modelo: {{ veiculo.modelo }}</li>
                     </ul>
-
                     <h2>Reserva</h2>
                     <div class="blocoFormulario">
                         <label>Data inicial da reserva</label>
-                        <input type="date" name="dataInicial" placeholder="Data inicial" class="inputBase">
+                        <input type="date" name="dataInicial" placeholder="Data inicial" class="inputBase" required>
                     </div>
-
                     <div class="blocoFormulario">
                         <label>Data final da reserva</label>
-                        <input type="date" name="dataFinal" placeholder="Data final" class="inputBase">
+                        <input type="date" name="dataFinal" placeholder="Data final" class="inputBase" required>
                     </div>
-                    
-
                     <div class="blocoFormulario">
                         <button type="submit">Cadastrar</button>
                     </div>

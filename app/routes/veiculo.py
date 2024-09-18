@@ -13,7 +13,7 @@ def loginAuth():
 @veiculo_bp.route('/')
 def index():
     veiculos = Veiculo.query.all()
-    return render_template('veiculos/cards_veiculos.html', veiculos=veiculos , nivel=session['tipo'])
+    return render_template('veiculos/cards_veiculos.html', veiculos=veiculos)
 
 @veiculo_bp.route('/adicionar_veiculo', methods=['GET','POST'])
 def adicionar_veiculo():
@@ -46,4 +46,21 @@ def deletar(id):
         db.session.commit()
         return redirect('/veiculo')
     else:
+        return redirect('/veiculo')
+
+@veiculo_bp.route('/editar/<int:id>', methods=['GET','POST'])
+def editar_veiculo(id):
+    veiculo = Veiculo.query.filter_by(id_veiculo=id).first()
+    if request.method == 'GET':
+        return render_template('veiculos/editar_veiculo.html', veiculo=veiculo)
+    else:
+        veiculo.marca = request.form['marca']
+        veiculo.modelo = request.form['modelo']
+        veiculo.placa = request.form['placa']
+        veiculo.categoria = request.form['categoria']
+        veiculo.ano = int(request.form['ano'])
+        veiculo.precoDia = float(request.form['precoDia'].replace(',','.'))
+        veiculo.status = request.form['status']
+        veiculo.imagem = request.files['imagem'].filename
+        db.session.commit()
         return redirect('/veiculo')

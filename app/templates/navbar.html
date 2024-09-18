@@ -8,10 +8,11 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="{{url_for('veiculo.index')}}">Veículos</a></li>
                 {% if session['tipo'] == 'funcionario' %}
-                    <li><a href="{{url_for('veiculo.adicionar_veiculo')}}">Adcionar veículo</a></li>
-                {% endif%}
-                <li><a href="{{url_for('reserva.index')}}">Reservas</a></li>
-                <li><a href="/contato">Contato</a></li>
+                    <li><a href="{{url_for('veiculo.adicionar_veiculo')}}">Adicionar veículo</a></li>
+                    <li><a href="{{url_for('reserva.reservas')}}">Reservas</a></li>
+                {% else %}
+                    <li><a href="{{url_for('reserva.minhas_reservas')}}">Minhas reservas</a></li>
+                {% endif %}
                 <li><a href="{{url_for('user.logout')}}">Sair</a></li>
             </ul>
         </nav>

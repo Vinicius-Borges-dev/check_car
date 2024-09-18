@@ -1,5 +1,19 @@
 from . import db
 
+class DadosPessoais(db.Model):
+    __tablename__ = 'dados_pessoais'
+
+    id_dados_pessoais = db.Column(db.Integer, primary_key=True)
+    endereco = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False , unique=True)
+    dataNascimento = db.Column(db.Date, nullable=False)
+    rg = db.Column(db.Integer, nullable=False, unique=True)
+    cpf = db.Column(db.BigInteger, nullable=False, unique=True)
+    telefone = db.Column(db.BigInteger, nullable=False, unique=True)
+    id_usuario = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self):
+        return self.id_dados_pessoais
 
 class Usuario(db.Model):
     __tablename__ = 'usuarios'
@@ -28,22 +42,6 @@ class Veiculo(db.Model):
     
     def __repr__(self):
         return self.id_veiculo
-class DadosPessoais(db.Model):
-    __tablename__ = 'dados_pessoais'
-
-    id_dados_pessoais = db.Column(db.Integer, primary_key=True)
-    endereco = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(100), nullable=False , unique=True)
-    dataNascimento = db.Column(db.Date, nullable=False)
-    rg = db.Column(db.Integer, nullable=False, unique=True)
-    cpf = db.Column(db.BigInteger, nullable=False, unique=True)
-    telefone = db.Column(db.BigInteger, nullable=False, unique=True)
-    id_usuario = db.Column(db.Integer, nullable=False)
-
-    def __repr__(self):
-        return self.id_dados_pessoais
-
-
 
 class Manutencao(db.Model):
     __tablename__ = 'manutencao'

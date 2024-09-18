@@ -16,9 +16,12 @@
                             <span class="nome">{{veiculo.marca}}</span>
                             <span class="preco">{{veiculo.precoDia}}</span>
                         </div>
-                            <a href="{{url_for('reserva.form', id=veiculo.id_veiculo)}}">Reservar</a>
-                        {% if nivel == 'funcionario' %}
-                            <a href="{{url_for('veiculo.deletar', id=veiculo.id_veiculo)}}">Deletar</a>
+                            <a class="btn-reservar" href="{{url_for('reserva.form', id=veiculo.id_veiculo)}}">Reservar</a>
+                        {% if session['tipo'] == 'funcionario' %}
+                            <div class="actions-group">
+                                <a href="{{url_for('veiculo.editar_veiculo', id=veiculo.id_veiculo)}}"><img src="{{url_for('static', filename='imagens/edit.png')}}" alt="Botão editar"></a>
+                                <a href="{{url_for('veiculo.deletar', id=veiculo.id_veiculo)}}"><img src="{{url_for('static', filename='imagens/trash.png')}}" alt="Botão editar"></a>
+                            </div>
                         {% endif %}
                     </div>
                 {% endfor %}
