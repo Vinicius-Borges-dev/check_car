@@ -13,6 +13,7 @@ def loginAuth():
 
 @reserva_bp.route('/reservas')
 def reservas():
+    if not AuthMiddleware.get_employee_permission(): return redirect(url_for('main.index'))
     reservas = Reserva.query.all()
     veiculos = []
     usuarios = []
