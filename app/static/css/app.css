@@ -328,6 +328,11 @@ html {
   border-radius: 3px;
   width: 12%;
   position: relative;
+
+  img{
+    height: 145px;
+    object-fit: cover;
+  }
 }
 
 .legenda {

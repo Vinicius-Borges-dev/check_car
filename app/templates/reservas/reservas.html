@@ -28,42 +28,41 @@
                     {% if session['tipo'] == 'funcionario' %}
                     {% set usuario = usuarios[loop.index0] %}
                     <td>
-                        <ul>
-                            <li>Nome: {{ usuario['nome'] }}</li>
-                        </ul>
-                        {% endif %}
-                        <td>{{reserva.dataInicio}}</td>
-                        <td>{{reserva.dataFim}}</td>
-                        <td>
-                            {% if reserva.status == 1 %}
-                            <p>Ativo</p>
-                            {% else %}
-                            <p>Cancelado</p>
-                            {% endif %}
-                        </td>
-                        <td>
-                            <a
-                                href="{{url_for('reserva.cancelar', id=reserva.id_reserva)}}">Cancelar</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                    <tr>
-                        <td colspan="6">
-                            <ul>
-                                {% for message in messages %}
-                                <li>{{ message }}</li>
-                                {% endfor %}
-                            </ul>
-                        </td>
-                    </tr>
+                        {{ usuario['nome'] }}
+                    </td>
                     {% endif %}
-                    {% endwith %}
-                </tbody>
-            </table>
-        </main>
+                    <td>{{reserva.dataInicio}}</td>
+                    <td>{{reserva.dataFim}}</td>
+                    <td>
+                        {% if reserva.status == 1 %}
+                        <p>Ativo</p>
+                        {% else %}
+                        <p>Cancelado</p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a
+                            href="{{url_for('reserva.cancelar', id=reserva.id_reserva)}}">Cancelar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <tr>
+                    <td colspan="6">
+                        <ul>
+                            {% for message in messages %}
+                            <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+                {% endif %}
+                {% endwith %}
+            </tbody>
+        </table>
+    </main>
 
-    </section>
+</section>
 
-    {% endblock %}
+{% endblock %}

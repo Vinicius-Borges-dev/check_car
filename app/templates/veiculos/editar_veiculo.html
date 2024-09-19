@@ -4,7 +4,7 @@
 
 <section id="content">
     <main id="main">
-        <form class="edit-form" action="{{url_for('veiculo.editar_veiculo', id=veiculo.id_veiculo)}}" method="POST">
+        <form class="edit-form" action="{{url_for('veiculo.editar_veiculo', id=veiculo.id_veiculo)}}" method="POST" enctype="multipart/form-data">
             <div class="form-input">
                 <label for="marca">Marca</label>
                 <input type="text" name="marca" id="marca" value="{{veiculo.marca}}" required>
@@ -31,7 +31,7 @@
             </div>
             <div class="form-input">
                 <label for="imagem">Imagem</label>
-                <input type="text" name="imagem" id="imagem" value="{{veiculo.imagem}}" required>
+                <input type="file" name="imagem" id="imagem">
             </div>
             <div class="form-input">
                 <label for="status">Status</label>

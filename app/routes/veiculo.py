@@ -3,6 +3,7 @@ from app.models import Veiculo, Reserva
 from app import db
 from app.middlewares import AuthMiddleware
 from werkzeug.utils import secure_filename
+import os
 
 veiculo_bp = Blueprint('veiculo', __name__, static_folder='static')
 
@@ -55,21 +56,30 @@ def deletar(id):
 
 @veiculo_bp.route('/editar/<int:id>', methods=['GET','POST'])
 def editar_veiculo(id):
+    if not AuthMiddleware.get_employee_permission():
+        return redirect('/veiculo')
     veiculo = Veiculo.query.filter_by(id_veiculo=id).first()
     if request.method == 'GET':
         return render_template('veiculos/editar_veiculo.html', veiculo=veiculo)
     else:
-        imagem = request.files['imagem']
-        if AuthMiddleware.image_validation(imagem):
-            veiculo.marca = request.form['marca']
-            veiculo.modelo = request.form['modelo']
-            veiculo.placa = request.form['placa']
-            veiculo.categoria = request.form['categoria']
-            veiculo.ano = int(request.form['ano'])
-            veiculo.precoDia = float(request.form['precoDia'].replace(',','.'))
-            veiculo.status = request.form['status']
-            imagemName = secure_filename(imagem.filename)
-            imagem.save(f'app/static/carImages/{imagemName}')
-            veiculo.imagem = imagem.filename
-            db.session.commit()
+        veiculo.marca = request.form['marca']
+        veiculo.modelo = request.form['modelo']
+        veiculo.placa = request.form['placa']
+        veiculo.categoria = request.form['categoria']
+        veiculo.ano = int(request.form['ano'])
+        veiculo.precoDia = float(request.form['precoDia'].replace(',','.'))
+        veiculo.status = request.form['status']
+        if request.files['imagem']:
+            for file in os.listdir('app/static/carImages'):
+                if file == veiculo.imagem:
+                    os.remove(f'app/static/carImages/{file}')
+                    
+            imagem = request.files['imagem']
+            if AuthMiddleware.image_validation(imagem):
+                imagemName = secure_filename(imagem.filename)
+                imagem.save(f'app/static/carImages/{imagemName}')
+                veiculo.imagem = imagem.filename
+        else:
+            veiculo.imagem = veiculo.imagem
+        db.session.commit()
         return redirect('/veiculo')
