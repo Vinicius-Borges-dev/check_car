@@ -1,4 +1,5 @@
 from flask import session
+import imghdr
 
 class AuthMiddleware:
     
@@ -9,3 +10,11 @@ class AuthMiddleware:
     @staticmethod
     def get_employee_permission():
         return session['tipo'] == 'funcionario'
+
+
+    @staticmethod
+    def image_validation(image):
+        allowed = {'png','jpg','jpeg','gif'}
+        realFiletype = imghdr.what(image)
+        return realFiletype in alloowed
+        
