@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, sessio
 from app.models import Veiculo, Reserva
 from app import db
 from app.middlewares import AuthMiddleware
+from werkzeug.utils import secure_filename
 
 veiculo_bp = Blueprint('veiculo', __name__, static_folder='static')
 
@@ -26,8 +27,10 @@ def adicionar_veiculo():
         valor = float(request.form['valor'].replace(',','.'))
         status = request.form['status']
         imagem = request.files['imagem']
-        
-        imagem.save(f'app/static/carImages/{imagem.filename}')
+
+        if AuthMiddleware.image_validation(imagem):
+            imagemName = secure_filename(imagem.filename)
+            imagem.save(f'app/static/carImages/{imagemName}')
         
         veiculo = Veiculo(marca=marca, modelo=modelo, placa=placa, categoria=categoria, ano=ano, precoDia=valor, imagem=imagem.filename, disponibilidade=status)
         
@@ -63,6 +66,10 @@ def editar_veiculo(id):
         veiculo.ano = int(request.form['ano'])
         veiculo.precoDia = float(request.form['precoDia'].replace(',','.'))
         veiculo.status = request.form['status']
-        veiculo.imagem = request.files['imagem'].filename
+        imagem = request.files['imagem']
+        if AuthMiddleware.image_validation(imagem):
+            imagemName = secure_filename(imagem.filename)
+            imagem.save(f'app/static/carImages/{imagemName}')
+            veiculo.imagem = imagem.filename
         db.session.commit()
         return redirect('/veiculo')
