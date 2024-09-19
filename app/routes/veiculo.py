@@ -47,9 +47,12 @@ def deletar(id):
     if AuthMiddleware.get_employee_permission():
         veiculo = Veiculo.query.filter_by(id_veiculo=id).first()
         reservas = Reserva.query.filter_by(id_veiculo=veiculo.id_veiculo)
-        db.session.delete(reservas)
+        
         db.session.delete(veiculo)
+        for reserva in reservas:
+            db.session.delete(reserva)
         db.session.commit()
+        
         return redirect('/veiculo')
     else:
         return redirect('/veiculo')
