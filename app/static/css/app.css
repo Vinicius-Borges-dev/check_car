@@ -170,7 +170,7 @@ html {
 
 #content {
   padding: 65px 40px;
-
+  min-height: 50%;
   background-repeat: no-repeat;
   background-position: 0 0;
 }

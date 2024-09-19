@@ -32,10 +32,10 @@ def adicionar_veiculo():
             imagemName = secure_filename(imagem.filename)
             imagem.save(f'app/static/carImages/{imagemName}')
         
-        veiculo = Veiculo(marca=marca, modelo=modelo, placa=placa, categoria=categoria, ano=ano, precoDia=valor, imagem=imagem.filename, disponibilidade=status)
+            veiculo = Veiculo(marca=marca, modelo=modelo, placa=placa, categoria=categoria, ano=ano, precoDia=valor, imagem=imagemName, disponibilidade=status)
         
-        db.session.add(veiculo)
-        db.session.commit()
+            db.session.add(veiculo)
+            db.session.commit()
         
         return redirect('/veiculo')
     else:
@@ -59,17 +59,17 @@ def editar_veiculo(id):
     if request.method == 'GET':
         return render_template('veiculos/editar_veiculo.html', veiculo=veiculo)
     else:
-        veiculo.marca = request.form['marca']
-        veiculo.modelo = request.form['modelo']
-        veiculo.placa = request.form['placa']
-        veiculo.categoria = request.form['categoria']
-        veiculo.ano = int(request.form['ano'])
-        veiculo.precoDia = float(request.form['precoDia'].replace(',','.'))
-        veiculo.status = request.form['status']
         imagem = request.files['imagem']
         if AuthMiddleware.image_validation(imagem):
+            veiculo.marca = request.form['marca']
+            veiculo.modelo = request.form['modelo']
+            veiculo.placa = request.form['placa']
+            veiculo.categoria = request.form['categoria']
+            veiculo.ano = int(request.form['ano'])
+            veiculo.precoDia = float(request.form['precoDia'].replace(',','.'))
+            veiculo.status = request.form['status']
             imagemName = secure_filename(imagem.filename)
             imagem.save(f'app/static/carImages/{imagemName}')
             veiculo.imagem = imagem.filename
-        db.session.commit()
+            db.session.commit()
         return redirect('/veiculo')

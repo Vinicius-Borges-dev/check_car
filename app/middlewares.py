@@ -16,5 +16,5 @@ class AuthMiddleware:
     def image_validation(image):
         allowed = {'png','jpg','jpeg','gif'}
         realFiletype = imghdr.what(image)
-        return realFiletype in alloowed
+        return realFiletype in allowed
         

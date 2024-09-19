@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, session, url_for
+from flask import Blueprint, render_template, request, redirect, session, url_for, flash
 from app.models import Reserva, Veiculo, Usuario
 from app import db
 from app.middlewares import AuthMiddleware
@@ -15,6 +15,9 @@ def loginAuth():
 def reservas():
     if not AuthMiddleware.get_employee_permission(): return redirect(url_for('main.index'))
     reservas = Reserva.query.all()
+    if len(reservas) < 1:
+        flash('Nenhuma reserva encontrada')
+        return render_template('reservas/reservas.html')
     veiculos = []
     usuarios = []
     for reserva in reservas:
@@ -31,6 +34,10 @@ def reservas():
 @reserva_bp.route('/minhas_reservas')
 def minhas_reservas():
     reservas = Reserva.query.filter_by(id_usuario=session['id'])
+    if not reservas.first():
+        flash('Você não possui reservas')
+        return render_template('reservas/minhas_reservas.html')
+    
     veiculos = []
     for reserva in reservas:
         veiculos.append({
